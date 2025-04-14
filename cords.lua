@@ -1,6 +1,6 @@
 -- Set Dev_Status To "enable" Or "disable"
 local Dev_status = "enable"
-local Perm_Level = "admin"  -- Set To "admin" or "everyone"
+local Perm_Level = "non_users"  -- Set To "everyone" or "non_users"
 
 
 
@@ -18,10 +18,11 @@ local Perm_Level = "admin"  -- Set To "admin" or "everyone"
 
 -- DONT EDIT Below That Point
 if Dev_status == "enable" then
-    if Perm_Level == "admin" then
+    if Perm_Level == "non_users" then
         Player = exports["es_extended"]:getSharedObject()
         RegisterCommand("gc", function()
-            if Player.PlayerData.group == 'admin' then
+            print(Player.PlayerData.group)
+            if Player.PlayerData.group ~= 'user' then
                 local playerPed = PlayerPedId()
                 local coords = GetEntityCoords(playerPed)
                 print("Your coordinates: " .. tostring(coords))
